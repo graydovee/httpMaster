@@ -1,11 +1,11 @@
 package cn.graydove.httpmaster.starter.handler;
 
-import java.util.Set;
+import java.util.List;
 
 public interface RequestHandlerContext {
-    Set<BeforeRequestHandler> getBeforeRequestHandlerSet();
+    List<BeforeRequestHandler> getBeforeRequestHandlerList();
 
-    Set<AfterRequestHandler> getAfterRequestHandlerSet();
+    List<AfterRequestHandler> getAfterRequestHandlerList();
 
-    Set<RequestFailureHandler> getRequestFailureHandlerSet();
+    List<RequestFailureHandler> getRequestFailureHandlerList();
 }

@@ -70,7 +70,7 @@ public class HttpProxyInvoker implements InvocationHandler {
     }
 
     private void invokeBeforeHandler(HttpRequest httpRequest, Method method, Object[] args) {
-        for (BeforeRequestHandler beforeRequestHandler : requestHandlerContext.getBeforeRequestHandlerSet()) {
+        for (BeforeRequestHandler beforeRequestHandler : requestHandlerContext.getBeforeRequestHandlerList()) {
             beforeRequestHandler.handle(httpRequest, method, args);
         }
     }
@@ -80,7 +80,7 @@ public class HttpProxyInvoker implements InvocationHandler {
     }
 
     private Object invokeAfterHandler(HttpResponse response, Method method, Object[] args) {
-        for (AfterRequestHandler afterRequestHandler : requestHandlerContext.getAfterRequestHandlerSet()) {
+        for (AfterRequestHandler afterRequestHandler : requestHandlerContext.getAfterRequestHandlerList()) {
             Object o = afterRequestHandler.handle(response, method, args);
             if (null != o) {
                 return o;
@@ -90,7 +90,7 @@ public class HttpProxyInvoker implements InvocationHandler {
     }
     
     private Object invokeFailureHandler(Throwable e, Method method, Object[] args) {
-        for (RequestFailureHandler requestFailureHandler : requestHandlerContext.getRequestFailureHandlerSet()) {
+        for (RequestFailureHandler requestFailureHandler : requestHandlerContext.getRequestFailureHandlerList()) {
             Object o = requestFailureHandler.handle(e, method, args);
             if (null != o) {
                 return o;

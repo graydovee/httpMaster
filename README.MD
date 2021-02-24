@@ -89,5 +89,4 @@ public interface DemoClient {
 # 未完成
 * 自定义配置属性
 * 接口返回值处理
-* handler支持`@order`
 * okHttp接入

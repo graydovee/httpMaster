@@ -8,9 +8,11 @@ import cn.graydove.httpmaster.starter.handler.AfterRequestHandler;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.http.HttpStatus;
 import cn.hutool.json.JSONUtil;
+import org.springframework.core.annotation.Order;
 
 import java.lang.reflect.Method;
 
+@Order
 public class DefaultReturnRequestHandler implements AfterRequestHandler {
 
     @Override
