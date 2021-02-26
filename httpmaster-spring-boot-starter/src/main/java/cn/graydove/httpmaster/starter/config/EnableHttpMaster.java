@@ -10,5 +10,5 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Import(HttpRequestBeanDefinitionRegister.class)
-public @interface EnableHttpAutoConfiguration {
+public @interface EnableHttpMaster {
 }

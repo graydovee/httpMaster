@@ -1,6 +1,7 @@
 package cn.graydove.httpmaster.core.request;
 
-import cn.graydove.httpmaster.core.exception.UnsupportedException;
+
+import cn.graydove.httpmaster.core.enums.HttpMethod;
 
 import java.nio.charset.Charset;
 import java.util.Map;
@@ -64,6 +65,11 @@ public interface HttpRequest {
         return this;
     }
 
+    default HttpRequest method(HttpMethod httpMethod) {
+        setHttpMethod(httpMethod);
+        return this;
+    }
+
     HttpHeader getHttpHeader();
 
     HttpBody getHttpBody();
@@ -71,6 +77,8 @@ public interface HttpRequest {
     HttpQuery getHttpQuery();
 
     HttpUrl getHttpUrl();
+
+    HttpMethod getHttpMethod();
 
     Charset getCharset();
 
@@ -81,4 +89,6 @@ public interface HttpRequest {
     void setHttpQuery(HttpQuery httpQuery);
 
     void setHttpUrl(HttpUrl httpUrl);
+
+    void setHttpMethod(HttpMethod httpMethod);
 }

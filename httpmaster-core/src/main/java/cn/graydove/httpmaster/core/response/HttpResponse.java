@@ -1,14 +1,14 @@
 package cn.graydove.httpmaster.core.response;
 
-import cn.hutool.core.lang.Pair;
+import cn.graydove.httpmaster.core.common.KVList;
 
-import java.util.List;
+import java.io.Closeable;
 
-public interface HttpResponse {
+public interface HttpResponse extends Closeable {
 
     int getStatusCode();
 
-    List<Pair<String, String>> getHeads();
+    KVList<String, String> getHeader();
 
     HttpContent getHttpContent();
 }

@@ -1,6 +1,6 @@
 package cn.graydove.httpmaster.core.request;
 
-import cn.graydove.httpmaster.core.common.MapConsumer;
+import cn.graydove.httpmaster.core.common.KVConsumer;
 
 import java.util.Map;
 
@@ -14,5 +14,5 @@ public interface HttpQuery extends HttpParam {
 
     Map<String, Object> asMap();
 
-    void forEach(MapConsumer<String, Object> mapConsumer);
+    void forEach(KVConsumer<String, Object> KVConsumer);
 }

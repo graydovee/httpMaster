@@ -2,6 +2,7 @@ package cn.graydove.httpmaster.core.response.support;
 
 import cn.graydove.httpmaster.core.response.HttpContent;
 
+import java.io.InputStream;
 import java.nio.charset.Charset;
 
 public class StringHttpContent implements HttpContent {
@@ -25,6 +26,11 @@ public class StringHttpContent implements HttpContent {
     @Override
     public Charset getEncodeType() {
         return httpContent.getEncodeType();
+    }
+
+    @Override
+    public InputStream getContent() {
+        return httpContent.getContent();
     }
 
     public String getContentStr() {

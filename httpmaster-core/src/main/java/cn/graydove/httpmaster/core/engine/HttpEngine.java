@@ -2,8 +2,8 @@ package cn.graydove.httpmaster.core.engine;
 
 import cn.graydove.httpmaster.core.enums.HttpMethod;
 import cn.graydove.httpmaster.core.request.HttpRequest;
-import cn.graydove.httpmaster.core.request.HttpRequestFactory;
 import cn.graydove.httpmaster.core.response.HttpResponse;
+import cn.hutool.core.lang.Assert;
 
 public interface HttpEngine {
 
@@ -23,11 +23,11 @@ public interface HttpEngine {
 
     HttpResponse trace(HttpRequest httpRequest);
 
-    HttpResponse request(HttpMethod httpMethod, HttpRequest httpRequest);
+    HttpResponse execute(HttpMethod httpMethod, HttpRequest httpRequest);
 
-    HttpRequestFactory getHttpRequestFactory();
-
-    default HttpRequest newHttpRequest() {
-        return getHttpRequestFactory().newHttpRequest();
+    default HttpResponse execute(HttpRequest httpRequest) {
+        HttpMethod httpMethod = httpRequest.getHttpMethod();
+        Assert.notNull(httpMethod, "http method is null");
+        return execute(httpMethod, httpRequest);
     }
 }

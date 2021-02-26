@@ -1,7 +1,7 @@
 package cn.graydove.httpmaster.core.request.support;
 
 
-import cn.graydove.httpmaster.core.request.*;
+import cn.graydove.httpmaster.core.enums.HttpMethod;
 import cn.graydove.httpmaster.core.request.*;
 
 import java.nio.charset.Charset;
@@ -20,6 +20,8 @@ public class DefaultHttpRequest implements HttpRequest {
     private HttpBody httpBody;
 
     private HttpUrl httpUrl;
+
+    private HttpMethod httpMethod;
 
     private Charset charset;
 
@@ -79,6 +81,11 @@ public class DefaultHttpRequest implements HttpRequest {
     }
 
     @Override
+    public HttpMethod getHttpMethod() {
+        return this.httpMethod;
+    }
+
+    @Override
     public void setHttpHeader(HttpHeader httpHeader) {
         this.httpHeader = httpHeader;
     }
@@ -96,5 +103,10 @@ public class DefaultHttpRequest implements HttpRequest {
     @Override
     public void setHttpUrl(HttpUrl httpUrl) {
         this.httpUrl = httpUrl;
+    }
+
+    @Override
+    public void setHttpMethod(HttpMethod httpMethod) {
+        this.httpMethod = httpMethod;
     }
 }

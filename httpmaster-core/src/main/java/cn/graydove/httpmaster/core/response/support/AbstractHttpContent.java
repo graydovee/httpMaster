@@ -4,7 +4,7 @@ import cn.graydove.httpmaster.core.response.HttpContent;
 
 import java.nio.charset.Charset;
 
-public class DefaultHttpContent implements HttpContent {
+public abstract class AbstractHttpContent implements HttpContent {
 
     private byte[] bytes;
 

@@ -13,10 +13,9 @@ import org.springframework.core.annotation.Order;
 import java.lang.reflect.Method;
 
 @Order
-public class DefaultReturnRequestHandler implements AfterRequestHandler {
-
+public class DefaultReturnRequestHandler extends AbstractAutoCloseRequestHandler {
     @Override
-    public Object handle(HttpResponse response, Method method, Object[] args) {
+    public Object doHandle(HttpResponse response, Method method, Object[] args) {
         if (HttpStatus.HTTP_OK != response.getStatusCode()) {
             throw new BadRequestException(StrUtil.format("request error, http status: {}", response.getStatusCode()), response.getStatusCode());
         }

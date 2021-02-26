@@ -12,7 +12,7 @@ public abstract class AbstractHttpParam implements HttpParam {
     }
 
     @Override
-    public HttpRequest request() {
+    public HttpRequest build() {
         return this.httpRequest;
     }
 }

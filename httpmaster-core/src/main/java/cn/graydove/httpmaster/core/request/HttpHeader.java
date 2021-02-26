@@ -1,7 +1,6 @@
 package cn.graydove.httpmaster.core.request;
 
-import cn.graydove.httpmaster.core.common.MapConsumer;
-import cn.graydove.httpmaster.core.request.support.DefaultHttpHeader;
+import cn.graydove.httpmaster.core.common.KVConsumer;
 
 import java.util.Map;
 
@@ -15,5 +14,5 @@ public interface HttpHeader extends HttpParam {
 
     Map<String, String> asMap();
 
-    void forEach(MapConsumer<String, String> consumer);
+    void forEach(KVConsumer<String, String> consumer);
 }

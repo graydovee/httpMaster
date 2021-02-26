@@ -20,7 +20,7 @@ public class DefaultHttpUrl extends AbstractHttpParam implements HttpUrl {
         this.urlBuilder = UrlBuilder.ofHttp(url, httpRequest.getCharset());
         UrlQuery query = urlBuilder.getQuery();
         if (null != query) {
-            HttpQuery httpQuery = request().query();
+            HttpQuery httpQuery = build().query();
             httpQuery.addQueries(query.getQueryMap());
             urlBuilder.setQuery(null);
         }
@@ -38,7 +38,7 @@ public class DefaultHttpUrl extends AbstractHttpParam implements HttpUrl {
     @Override
     public String getFullUrl() {
         UrlBuilder builder = UrlBuilder.of(urlBuilder.build(), urlBuilder.getCharset());
-        request().query().forEach((key, value) -> builder.addQuery(key, StrUtil.toString(value)));
+        build().query().forEach((key, value) -> builder.addQuery(key, StrUtil.toString(value)));
         return builder.build();
     }
 }

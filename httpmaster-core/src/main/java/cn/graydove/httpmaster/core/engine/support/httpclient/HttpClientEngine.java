@@ -7,11 +7,7 @@ import cn.graydove.httpmaster.core.exception.HttpRequestException;
 import cn.graydove.httpmaster.core.exception.UnsupportedException;
 import cn.graydove.httpmaster.core.request.HttpBody;
 import cn.graydove.httpmaster.core.request.HttpRequest;
-import cn.graydove.httpmaster.core.request.HttpRequestFactory;
-import cn.graydove.httpmaster.core.request.support.DefaultHttpRequestFactory;
-import cn.graydove.httpmaster.core.response.support.DefaultHttpContent;
-import cn.graydove.httpmaster.core.response.support.DefaultHttpResponse;
-import cn.hutool.core.lang.Pair;
+import cn.graydove.httpmaster.core.response.HttpResponse;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
 import org.apache.http.HttpEntity;
@@ -21,41 +17,31 @@ import org.apache.http.client.methods.*;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class HttpClientEngine extends AbstractHttpEngine {
 
     private CloseableHttpClient client;
 
-    public HttpClientEngine(HttpRequestFactory httpRequestFactory, CloseableHttpClient client) {
-        super(httpRequestFactory);
+    public HttpClientEngine(CloseableHttpClient client) {
         this.client = client;
     }
 
-    public HttpClientEngine(HttpRequestFactory httpRequestFactory, HttpClientFactory httpClientFactory) {
-        super(httpRequestFactory);
+    public HttpClientEngine(HttpClientFactory httpClientFactory) {
         this.client = httpClientFactory.newClient();
     }
 
-    public HttpClientEngine(HttpRequestFactory httpRequestFactory) {
-        this(httpRequestFactory, new DefaultHttpClientFactory());
-    }
-
     public HttpClientEngine() {
-        this(new DefaultHttpRequestFactory(), new DefaultHttpClientFactory());
+        this(new DefaultHttpClientFactory());
     }
 
     @Override
-    public DefaultHttpResponse request(HttpMethod httpMethod, HttpRequest httpRequest) {
+    public HttpResponse execute(HttpMethod httpMethod, HttpRequest httpRequest) {
         HttpRequestBase requestBase = toRequest(httpMethod, httpRequest);
         return execute(requestBase);
     }
@@ -140,29 +126,10 @@ public class HttpClientEngine extends AbstractHttpEngine {
         return null;
     }
 
-    private DefaultHttpResponse execute(HttpRequestBase httpRequestBase) {
-        try (CloseableHttpResponse response = client.execute(httpRequestBase)) {
-            DefaultHttpResponse httpResponse = new DefaultHttpResponse();
-
-            httpResponse.setStatusCode(response.getStatusLine().getStatusCode());
-
-            HttpEntity entity = response.getEntity();
-            DefaultHttpContent content = new DefaultHttpContent();
-            Charset charset = Optional.ofNullable(entity.getContentEncoding())
-                    .map(NameValuePair::getValue)
-                    .map(Charset::forName)
-                    .orElse(null);
-            content.setEncodeType(charset);
-            content.setBytes(EntityUtils.toByteArray(entity));
-            content.setLength(entity.getContentLength());
-            httpResponse.setHttpContent(content);
-
-            List<Pair<String, String>> headList = Arrays.stream(response.getAllHeaders())
-                    .map(pair -> Pair.of(pair.getName(), pair.getValue()))
-                    .collect(Collectors.toList());
-            httpResponse.setHead(headList);
-
-            return httpResponse;
+    private HttpResponse execute(HttpRequestBase httpRequestBase) {
+        try {
+            CloseableHttpResponse response = client.execute(httpRequestBase);
+            return new HttpClientResponse(response);
         } catch (IOException e) {
             throw new HttpRequestException(e);
         }

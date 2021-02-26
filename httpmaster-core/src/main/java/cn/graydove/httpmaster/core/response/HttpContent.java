@@ -1,5 +1,6 @@
 package cn.graydove.httpmaster.core.response;
 
+import java.io.InputStream;
 import java.nio.charset.Charset;
 
 public interface HttpContent {
@@ -9,4 +10,6 @@ public interface HttpContent {
     long getLength();
 
     Charset getEncodeType();
+
+    InputStream getContent();
 }

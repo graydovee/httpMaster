@@ -27,8 +27,8 @@ public class HttpClientConfiguration {
 
     @Bean
     @ConditionalOnMissingBean(HttpEngine.class)
-    public HttpEngine httpEngine(HttpRequestFactory httpRequestFactory, HttpClientFactory httpClientFactory) {
-        return new HttpClientEngine(httpRequestFactory, httpClientFactory);
+    public HttpEngine httpEngine(HttpClientFactory httpClientFactory) {
+        return new HttpClientEngine(httpClientFactory);
     }
 
 }

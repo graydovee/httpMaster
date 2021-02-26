@@ -1,7 +1,6 @@
 package cn.graydove.httpmaster.starter.proxy;
 
 import cn.graydove.httpmaster.core.engine.HttpEngine;
-import cn.graydove.httpmaster.core.enums.HttpMethod;
 import cn.graydove.httpmaster.core.exception.HttpRequestException;
 import cn.graydove.httpmaster.core.exception.UnsupportedException;
 import cn.graydove.httpmaster.core.request.HttpRequest;
@@ -34,17 +33,14 @@ public class HttpProxyInvoker implements InvocationHandler {
     }
 
     @Override
-    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        
-        HttpFunction httpFunction = getHttpFunction(method);
-        
-        HttpRequest httpRequest = httpFunction.buildRequest(args);
+    public Object invoke(Object proxy, Method method, Object[] args) {
+        HttpRequest httpRequest = getHttpFunction(method, args);
 
         invokeBeforeHandler(httpRequest, method, args);
 
         HttpResponse response;
         try {
-            response = invokeHttpRequest(httpFunction.getHttpMethod(), httpRequest);
+            response = invokeHttpRequest(httpRequest);
         } catch (Throwable e) {
             Object o = invokeFailureHandler(e, method, args);
             if (null != o) {
@@ -54,19 +50,16 @@ public class HttpProxyInvoker implements InvocationHandler {
         }
 
         Object o = invokeAfterHandler(response, method, args);
-        if (null != o) {
-            return o;
-        }
-        
-        return response;
+
+        return null == o ? response : o;
     }
 
-    private HttpFunction getHttpFunction(Method method) {
+    private HttpRequest getHttpFunction(Method method, Object[] args) {
         HttpFunction httpFunction = functionMap.get(method);
         if (null == httpFunction) {
             throw new UnsupportedException(StrUtil.format("method not implement: {}", method.getName()));
         }
-        return httpFunction;
+        return httpFunction.buildRequest(args);
     }
 
     private void invokeBeforeHandler(HttpRequest httpRequest, Method method, Object[] args) {
@@ -75,8 +68,8 @@ public class HttpProxyInvoker implements InvocationHandler {
         }
     }
 
-    private HttpResponse invokeHttpRequest(HttpMethod httpMethod, HttpRequest httpRequest) {
-        return httpEngine.request(httpMethod, httpRequest);
+    private HttpResponse invokeHttpRequest(HttpRequest httpRequest) {
+        return httpEngine.execute(httpRequest);
     }
 
     private Object invokeAfterHandler(HttpResponse response, Method method, Object[] args) {

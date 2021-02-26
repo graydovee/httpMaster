@@ -1,6 +1,6 @@
 package cn.graydove.httpmaster.core.request.support;
 
-import cn.graydove.httpmaster.core.common.MapConsumer;
+import cn.graydove.httpmaster.core.common.KVConsumer;
 import cn.graydove.httpmaster.core.request.HttpHeader;
 import cn.graydove.httpmaster.core.request.HttpRequest;
 import cn.hutool.core.collection.CollectionUtil;
@@ -46,7 +46,7 @@ public class DefaultHttpHeader extends AbstractHttpParam implements HttpHeader {
 
 
     @Override
-    public void forEach(MapConsumer<String, String> consumer) {
+    public void forEach(KVConsumer<String, String> consumer) {
         if (CollectionUtil.isEmpty(headers)) {
             return;
         }

@@ -13,13 +13,67 @@
 
     <groupId>cn.graydove.httpmaster</groupId>
     <artifactId>httpmaster-parent</artifactId>
-    <packaging>pom</packaging>
     <version>0.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
     <modules>
         <module>httpmaster-spring-boot-starter</module>
         <module>httpmaster-core</module>
         <module>httpmaster-demo</module>
     </modules>
+
+    <properties>
+        <httpclient.version>4.5.9</httpclient.version>
+        <commons-logging.version>1.2</commons-logging.version>
+        <okhttp.version>3.14.9</okhttp.version>
+        <hutool.version>5.5.7</hutool.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- HttpClient start-->
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>${httpclient.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-logging</groupId>
+                <artifactId>commons-logging</artifactId>
+                <version>${commons-logging.version}</version>
+            </dependency>
+            <!-- HttpClient end  -->
+            <!-- OKhttp start-->
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>okhttp</artifactId>
+                <version>4.9.0</version>
+            </dependency>
+            <!-- OKhttp end  -->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-http</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-core</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-json</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/junit/junit -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.13.1</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <plugins>

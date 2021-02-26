@@ -1,15 +1,14 @@
 package cn.graydove.httpmaster.core.response.support;
 
+import cn.graydove.httpmaster.core.common.KVList;
+import cn.graydove.httpmaster.core.request.HttpHeader;
 import cn.graydove.httpmaster.core.response.HttpContent;
 import cn.graydove.httpmaster.core.response.HttpResponse;
-import cn.hutool.core.lang.Pair;
 
-import java.util.List;
-
-public class DefaultHttpResponse implements HttpResponse {
+public abstract class AbstractHttpResponse implements HttpResponse {
     private int statusCode;
 
-    private List<Pair<String, String>> head;
+    private KVList<String, String> header;
 
     private HttpContent httpContent;
 
@@ -17,23 +16,23 @@ public class DefaultHttpResponse implements HttpResponse {
         return statusCode;
     }
 
-    public List<Pair<String, String>> getHeads() {
-        return head;
+    public KVList<String, String> getHeader() {
+        return header;
     }
 
     public HttpContent getHttpContent() {
         return httpContent;
     }
 
-    public void setStatusCode(int statusCode) {
+    protected void setStatusCode(int statusCode) {
         this.statusCode = statusCode;
     }
 
-    public void setHead(List<Pair<String, String>> head) {
-        this.head = head;
+    protected void setHead(KVList<String, String> header) {
+        this.header = header;
     }
 
-    public void setHttpContent(HttpContent httpContent) {
+    protected void setHttpContent(HttpContent httpContent) {
         this.httpContent = httpContent;
     }
 }

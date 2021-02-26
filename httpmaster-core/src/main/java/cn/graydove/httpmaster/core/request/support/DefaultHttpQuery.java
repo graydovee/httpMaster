@@ -1,6 +1,6 @@
 package cn.graydove.httpmaster.core.request.support;
 
-import cn.graydove.httpmaster.core.common.MapConsumer;
+import cn.graydove.httpmaster.core.common.KVConsumer;
 import cn.graydove.httpmaster.core.request.HttpQuery;
 import cn.graydove.httpmaster.core.request.HttpRequest;
 import cn.hutool.core.collection.CollectionUtil;
@@ -47,12 +47,12 @@ public class DefaultHttpQuery extends AbstractHttpParam implements HttpQuery {
     }
 
     @Override
-    public void forEach(MapConsumer<String, Object> mapConsumer) {
+    public void forEach(KVConsumer<String, Object> KVConsumer) {
         if (CollectionUtil.isEmpty(params)) {
             return;
         }
         for (Map.Entry<String, Object> entry : params.entrySet()) {
-            mapConsumer.apply(entry.getKey(), entry.getValue());
+            KVConsumer.apply(entry.getKey(), entry.getValue());
         }
     }
 }

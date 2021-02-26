@@ -18,20 +18,22 @@
 public class Demo {
 
     private HttpClientEngine engine = new HttpClientEngine();
+    
+    private HttpRequestFactory httpRequestFactory = new DefaultHttpRequestFactory();
 
     public void testRequest() {
-        httpRequest = engine.newHttpRequest()
+        httpRequest = httpRequestFactory.newHttpRequest()
                         .url("http://localhost:8080/admin/visit")
                         .header()
                         .addHeader("Authorization", prefix + " " + token)
-                        .request()
+                        .build()
                         .keyValueBody()
                         .addParam("bodyKey", "BodyValue")
-                        .request()
+                        .build()
                         .query()
                         .addQuery("begin", "2021-01-1")
                         .addQuery("end", "2021-01-31")
-                        .request();
+                        .build();
         HttpResponse response = engine.post(httpRequest);
     }
 }
@@ -46,9 +48,9 @@ public class Demo {
     <version>${parent.version}</version>
 </dependency>
 ```
-2. 使用`@EnableHttpAutoConfiguration`注解
+2. 使用`@EnableHttpMaster`注解
 ```java
-@EnableHttpAutoConfiguration
+@EnableHttpMaster
 @SpringBootApplication
 public class Application {
     public static void main(String[] args) {

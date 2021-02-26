@@ -28,7 +28,9 @@ public class HttpFunction {
 
     public HttpRequest buildRequest(Object[] args) {
         HttpRequestFactory httpRequestFactory = requestDefinition.getHttpRequestFactory();
-        HttpRequest httpRequest = httpRequestFactory.newHttpRequest().url(requestDefinition.getUrl());
+        HttpRequest httpRequest = httpRequestFactory.newHttpRequest()
+                .url(requestDefinition.getUrl())
+                .method(getHttpMethod());
 
         List<ParamDefinition> headerDefinitions = requestDefinition.getHeaderDefinitions();
         if (CollectionUtil.isNotEmpty(headerDefinitions)) {
