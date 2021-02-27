@@ -21,31 +21,12 @@ public class HttpClientContent extends AbstractHttpContent {
     }
 
     @Override
-    public byte[] getContentBytes() {
-        byte[] contentBytes = super.getContentBytes();
-        if (null == contentBytes) {
-            synchronized (entity) {
-                contentBytes = super.getContentBytes();
-                if (null == contentBytes) {
-                    try {
-                        contentBytes = EntityUtils.toByteArray(entity);
-                        setBytes(contentBytes);
-                    } catch (IOException e) {
-                        throw new HttpRequestException(e);
-                    }
-                }
-            }
-        }
-        return contentBytes;
-    }
-
-    @Override
-    public long getLength() {
+    protected Long createLength() {
         return entity.getContentLength();
     }
 
     @Override
-    public Charset getEncodeType() {
+    protected Charset createEncodeType() {
         return Optional.ofNullable(entity.getContentEncoding())
                 .map(NameValuePair::getValue)
                 .map(Charset::forName)
@@ -53,7 +34,16 @@ public class HttpClientContent extends AbstractHttpContent {
     }
 
     @Override
-    public InputStream getContent() {
+    protected byte[] createBytes() {
+        try {
+            return EntityUtils.toByteArray(entity);
+        } catch (IOException e) {
+            throw new HttpRequestException(e);
+        }
+    }
+
+    @Override
+    protected InputStream createInputStream() {
         try {
             return entity.getContent();
         } catch (IOException e) {

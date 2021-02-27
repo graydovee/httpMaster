@@ -1,38 +1,47 @@
 package cn.graydove.httpmaster.core.response.support;
 
 import cn.graydove.httpmaster.core.common.KVList;
-import cn.graydove.httpmaster.core.request.HttpHeader;
+import cn.graydove.httpmaster.core.common.Singleton;
 import cn.graydove.httpmaster.core.response.HttpContent;
 import cn.graydove.httpmaster.core.response.HttpResponse;
 
+import java.util.function.Supplier;
+
 public abstract class AbstractHttpResponse implements HttpResponse {
-    private int statusCode;
 
-    private KVList<String, String> header;
+    private Singleton<Integer> statusCode = Singleton.of(this::createStatus);
 
-    private HttpContent httpContent;
+    private Singleton<KVList<String, String>> header = Singleton.of(this::createHeader);
+
+    private Singleton<HttpContent> httpContent = Singleton.of(this::createHttpContent);
 
     public int getStatusCode() {
-        return statusCode;
+        return statusCode.get();
     }
 
     public KVList<String, String> getHeader() {
-        return header;
+        return header.get();
     }
 
     public HttpContent getHttpContent() {
-        return httpContent;
+        return httpContent.get();
     }
 
-    protected void setStatusCode(int statusCode) {
-        this.statusCode = statusCode;
+    protected void setStatusCode(Supplier<Integer> statusCode) {
+        this.statusCode = Singleton.of(statusCode);
     }
 
-    protected void setHead(KVList<String, String> header) {
-        this.header = header;
+    protected void setHeader(Supplier<KVList<String, String>> header) {
+        this.header = Singleton.of(header);
     }
 
-    protected void setHttpContent(HttpContent httpContent) {
-        this.httpContent = httpContent;
+    protected void setHttpContent(Supplier<HttpContent> httpContent) {
+        this.httpContent = Singleton.of(httpContent);
     }
+
+    protected abstract Integer createStatus();
+
+    protected abstract KVList<String, String> createHeader();
+
+    protected abstract HttpContent createHttpContent();
 }

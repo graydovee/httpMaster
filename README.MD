@@ -86,9 +86,12 @@ public interface DemoClient {
     * 若不使用注解则自动根据请求方法判断，若能携带请求体则携带请求体，否则携带在请参数
 
 # 已完成
-* 接入httpclient，实现post，get方法
+* 接入httpclient、okHttp
+* 完成httpmaster-spring-boot-starter的基本功能和拓展接口
 
 # 未完成
 * 自定义配置属性
-* 接口返回值处理
-* okHttp接入
+* 拓展返回值处理接口
+
+# 未来计划
+* 对微服务系统做支持

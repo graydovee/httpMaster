@@ -4,10 +4,26 @@ import cn.hutool.core.lang.Pair;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
+import java.util.function.Function;
 
 public class KVList<K,V> implements List<Pair<K,V>> {
 
     private final List<Pair<K,V>> list;
+
+    public static <O, K, V> KVList<K, V> toKVList(Iterable<O> iterable, Function<O, K> keyGetter, Function<O, V> valueGetter) {
+        KVList<K, V> kvList = new KVList<>();
+        for (O o : iterable) {
+            kvList.add(Pair.of(keyGetter.apply(o), valueGetter.apply(o)));
+        }
+        return kvList;
+    }
+    public static <O, K, V> KVList<K, V> toKVList(O[] iterable, Function<O, K> keyGetter, Function<O, V> valueGetter) {
+        KVList<K, V> kvList = new KVList<>();
+        for (O o : iterable) {
+            kvList.add(Pair.of(keyGetter.apply(o), valueGetter.apply(o)));
+        }
+        return kvList;
+    }
 
     public KVList() {
         this.list = new ArrayList<>();

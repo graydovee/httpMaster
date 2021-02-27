@@ -5,6 +5,8 @@ import cn.graydove.httpmaster.core.exception.UnsupportedException;
 import cn.graydove.httpmaster.core.request.HttpRequest;
 import cn.hutool.core.util.StrUtil;
 
+import java.util.Optional;
+
 public enum HttpMediaType {
 
     URL_ENCODED("application/x-www-form-urlencoded"),
@@ -25,19 +27,21 @@ public enum HttpMediaType {
         return value;
     }
 
-    public static HttpMediaType toHttpMediaType(String contentType) {
+    public static Optional<HttpMediaType> toHttpMediaType(String contentType) {
+        HttpMediaType httpMediaType = null;
         for (String s : StrUtil.split(contentType, ';')) {
             for (HttpMediaType value : values()) {
                 if (StrUtil.equals(value.getValue(), s)) {
-                    return value;
+                    httpMediaType = value;
+                    break;
                 }
             }
         }
-        throw new UnsupportedException("unsupported mediaType: " + contentType);
+        return Optional.ofNullable(httpMediaType);
     }
 
 
-    public static HttpMediaType toHttpMediaType(HttpRequest httpRequest) {
+    public static Optional<HttpMediaType> toHttpMediaType(HttpRequest httpRequest) {
         String contentType = httpRequest.header().asMap().get(HeaderConstant.CONTENT_TYPE);
         return toHttpMediaType(contentType);
     }

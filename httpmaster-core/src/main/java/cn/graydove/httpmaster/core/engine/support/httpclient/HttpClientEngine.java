@@ -97,12 +97,7 @@ public class HttpClientEngine extends AbstractHttpEngine {
         if (null == httpBody) {
             return null;
         }
-        HttpMediaType httpMediaType;
-        try {
-            httpMediaType = HttpMediaType.toHttpMediaType(httpRequest);
-        } catch (UnsupportedException e) {
-            httpMediaType = HttpMediaType.URL_ENCODED;
-        }
+        HttpMediaType httpMediaType = HttpMediaType.toHttpMediaType(httpRequest).orElse(HttpMediaType.URL_ENCODED);
         switch (httpMediaType) {
             case URL_ENCODED:
                 Map<Object, Object> map = httpRequest.getHttpBody().toQueryMap();
@@ -122,8 +117,8 @@ public class HttpClientEngine extends AbstractHttpEngine {
                     throw new UnsupportedException(e);
                 }
             default:
+                throw new UnsupportedException(StrUtil.format("unsupported mediaType: ", httpMediaType));
         }
-        return null;
     }
 
     private HttpResponse execute(HttpRequestBase httpRequestBase) {

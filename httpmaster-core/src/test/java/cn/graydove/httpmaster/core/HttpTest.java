@@ -1,6 +1,8 @@
 package cn.graydove.httpmaster.core;
 
 import cn.graydove.httpmaster.core.common.HeaderConstant;
+import cn.graydove.httpmaster.core.engine.HttpEngine;
+import cn.graydove.httpmaster.core.engine.support.okhttp.OkHttpEngine;
 import cn.graydove.httpmaster.core.enums.HttpMethod;
 import cn.graydove.httpmaster.core.request.HttpRequest;
 import cn.graydove.httpmaster.core.request.HttpRequestFactory;
@@ -14,7 +16,6 @@ import cn.hutool.core.lang.Pair;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
-import okio.Utf8;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -24,7 +25,7 @@ import java.util.Map;
 
 public class HttpTest {
 
-    private HttpClientEngine engine = new HttpClientEngine();
+    private HttpEngine engine = new OkHttpEngine();
 
     private HttpRequestFactory httpRequestFactory = new DefaultHttpRequestFactory();
 
