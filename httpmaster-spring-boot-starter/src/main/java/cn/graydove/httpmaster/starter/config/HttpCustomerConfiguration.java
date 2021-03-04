@@ -1,6 +1,7 @@
 package cn.graydove.httpmaster.starter.config;
 
-import cn.graydove.httpmaster.starter.handler.support.DefaultReturnRequestHandler;
+import cn.graydove.httpmaster.starter.handler.support.DefaultReturnAfterRequestHandler;
+import cn.graydove.httpmaster.starter.handler.support.ExceptionAfterRequestHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -8,7 +9,12 @@ import org.springframework.context.annotation.Configuration;
 public class HttpCustomerConfiguration {
 
     @Bean
-    public DefaultReturnRequestHandler stringAfterRequestHandler() {
-        return new DefaultReturnRequestHandler();
+    public DefaultReturnAfterRequestHandler stringAfterRequestHandler() {
+        return new DefaultReturnAfterRequestHandler();
+    }
+
+    @Bean
+    public ExceptionAfterRequestHandler exceptionAfterRequestHandler() {
+        return new ExceptionAfterRequestHandler();
     }
 }
