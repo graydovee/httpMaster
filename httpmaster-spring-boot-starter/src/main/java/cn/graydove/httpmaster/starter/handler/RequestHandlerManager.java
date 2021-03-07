@@ -1,78 +1,50 @@
 package cn.graydove.httpmaster.starter.handler;
 
-import org.springframework.core.annotation.AnnotationAwareOrderComparator;
+import cn.graydove.httpmaster.starter.bean.OrderBeanRegister;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RequestHandlerManager implements RequestHandlerContext, RequestHandlerRegister {
 
-    private final List<BeforeRequestHandler> beforeRequestHandlerList = new ArrayList<>();
+    private final OrderBeanRegister<BeforeRequestHandler> beforeRequestHandlerRegister;
 
-    private final List<AfterRequestHandler> afterRequestHandlerList = new ArrayList<>();
+    private final OrderBeanRegister<AfterRequestHandler> afterRequestHandlerRegister;
 
-    private final List<RequestFailureHandler> requestFailureHandlerList = new ArrayList<>();
+    private final OrderBeanRegister<RequestFailureHandler> requestFailureHandlerRegister;
 
-    private boolean beforeRequestHandlerListNotSorted = true;
-
-    private boolean afterRequestHandlerListNotSorted = true;
-
-    private boolean requestFailureHandlerListNotSorted = true;
-
-    @Override
-    public void registerBeforeRequestHandler(BeforeRequestHandler beforeRequestHandler) {
-        beforeRequestHandlerList.add(beforeRequestHandler);
-        beforeRequestHandlerListNotSorted = true;
-    }
-
-    @Override
-    public void registerAfterRequestHandler(AfterRequestHandler afterRequestHandler) {
-        afterRequestHandlerList.add(afterRequestHandler);
-        afterRequestHandlerListNotSorted = true;
-    }
-
-    @Override
-    public void registerRequestFailureHandler(RequestFailureHandler requestFailureHandler) {
-        requestFailureHandlerList.add(requestFailureHandler);
-        requestFailureHandlerListNotSorted = true;
+    public RequestHandlerManager(List<BeforeRequestHandler> beforeRequestHandlerList, List<AfterRequestHandler> afterRequestHandlerList, List<RequestFailureHandler> requestFailureHandlerList) {
+        this.beforeRequestHandlerRegister = new OrderBeanRegister<>(beforeRequestHandlerList);
+        this.afterRequestHandlerRegister = new OrderBeanRegister<>(afterRequestHandlerList);
+        this.requestFailureHandlerRegister = new OrderBeanRegister<>(requestFailureHandlerList);
     }
 
     @Override
     public List<BeforeRequestHandler> getBeforeRequestHandlerList() {
-        if (beforeRequestHandlerListNotSorted) {
-            synchronized (beforeRequestHandlerList) {
-                if (beforeRequestHandlerListNotSorted) {
-                    beforeRequestHandlerList.sort(AnnotationAwareOrderComparator.INSTANCE);
-                    beforeRequestHandlerListNotSorted = false;
-                }
-            }
-        }
-        return beforeRequestHandlerList;
+        return beforeRequestHandlerRegister.getData();
     }
 
     @Override
     public List<AfterRequestHandler> getAfterRequestHandlerList() {
-        if (afterRequestHandlerListNotSorted) {
-            synchronized (afterRequestHandlerList) {
-                if (afterRequestHandlerListNotSorted) {
-                    afterRequestHandlerList.sort(AnnotationAwareOrderComparator.INSTANCE);
-                    afterRequestHandlerListNotSorted = false;
-                }
-            }
-        }
-        return afterRequestHandlerList;
+        return afterRequestHandlerRegister.getData();
     }
 
     @Override
     public List<RequestFailureHandler> getRequestFailureHandlerList() {
-        if (requestFailureHandlerListNotSorted) {
-            synchronized (requestFailureHandlerList) {
-                if (requestFailureHandlerListNotSorted) {
-                    requestFailureHandlerList.sort(AnnotationAwareOrderComparator.INSTANCE);
-                    requestFailureHandlerListNotSorted = false;
-                }
-            }
-        }
-        return requestFailureHandlerList;
+        return requestFailureHandlerRegister.getData();
+    }
+
+    @Override
+    public void registerBeforeRequestHandler(BeforeRequestHandler beforeRequestHandler) {
+        beforeRequestHandlerRegister.register(beforeRequestHandler);
+    }
+
+    @Override
+    public void registerAfterRequestHandler(AfterRequestHandler afterRequestHandler) {
+        afterRequestHandlerRegister.register(afterRequestHandler);
+    }
+
+    @Override
+    public void registerRequestFailureHandler(RequestFailureHandler requestFailureHandler) {
+        requestFailureHandlerRegister.register(requestFailureHandler);
     }
 }

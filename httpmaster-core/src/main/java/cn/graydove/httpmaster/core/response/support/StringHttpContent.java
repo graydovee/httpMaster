@@ -1,5 +1,6 @@
 package cn.graydove.httpmaster.core.response.support;
 
+import cn.graydove.httpmaster.core.common.Singleton;
 import cn.graydove.httpmaster.core.response.HttpContent;
 
 import java.io.InputStream;
@@ -9,8 +10,19 @@ public class StringHttpContent implements HttpContent {
 
     private HttpContent httpContent;
 
+    private Singleton<String> strContent;
+
     public StringHttpContent(HttpContent httpContent) {
         this.httpContent = httpContent;
+        this.strContent = new Singleton<>(this::createStrContent);
+    }
+
+    private String createStrContent() {
+        Charset encodeType = getEncodeType();
+        if (null == encodeType) {
+            return new String(getContentBytes());
+        }
+        return new String(getContentBytes(), encodeType);
     }
 
     @Override
@@ -34,11 +46,7 @@ public class StringHttpContent implements HttpContent {
     }
 
     public String getContentStr() {
-        Charset encodeType = getEncodeType();
-        if (null == encodeType) {
-            return new String(getContentBytes());
-        }
-        return new String(getContentBytes(), encodeType);
+        return strContent.get();
     }
 
     public String getContentStr(Charset charset) {

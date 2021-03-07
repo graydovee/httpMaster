@@ -8,14 +8,14 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 
 /**
- * 不建议重新success和failure以外的方法
+ * 建议重写success和failure实现功能
  */
 public abstract class AbstractAutoCloseAfterRequestHandler implements AbstractAfterRequestHandler {
 
     private final Logger logger = LoggerFactory.getLogger(AbstractAutoCloseAfterRequestHandler.class);
 
     @Override
-    public Object handle(HttpResponse response, Method method, Object[] args) {
+    public final Object handle(HttpResponse response, Method method, Object[] args) {
         Object o = doHandle(response, method, args);
         if (null != o) {
             closeResponse(response);
