@@ -1,8 +1,7 @@
 package cn.graydove.httpmaster.core.engine.support.httpclient;
 
 import cn.graydove.httpmaster.core.exception.HttpRequestException;
-import cn.graydove.httpmaster.core.response.HttpContent;
-import cn.graydove.httpmaster.core.response.support.AbstractHttpContent;
+import cn.graydove.httpmaster.core.response.support.AbstractStringHttpContent;
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
 import org.apache.http.util.EntityUtils;
@@ -12,7 +11,7 @@ import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.util.Optional;
 
-public class HttpClientContent extends AbstractHttpContent {
+public class HttpClientContent extends AbstractStringHttpContent {
 
     private final HttpEntity entity;
 

@@ -6,5 +6,8 @@ import java.lang.reflect.Method;
 
 public interface BeforeRequestHandler {
 
-    void handle(HttpRequest httpRequest, Method method, Object[] args);
+    /**
+     * 返回false可终止请求
+     */
+    boolean handle(HttpRequest httpRequest, Method method, Object[] args);
 }

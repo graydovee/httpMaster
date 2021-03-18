@@ -10,6 +10,8 @@ import cn.graydove.httpmaster.starter.handler.BeforeRequestHandler;
 import cn.graydove.httpmaster.starter.handler.RequestFailureHandler;
 import cn.graydove.httpmaster.starter.handler.RequestHandlerContext;
 import cn.hutool.core.util.StrUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -19,6 +21,8 @@ import java.util.Map;
  * 代理方法执行器
  */
 public class HttpProxyInvoker implements InvocationHandler {
+
+    private static final Logger logger = LoggerFactory.getLogger(HttpProxyInvoker.class);
     
     private Map<Method, HttpFunction> functionMap;
     
@@ -36,7 +40,12 @@ public class HttpProxyInvoker implements InvocationHandler {
     public Object invoke(Object proxy, Method method, Object[] args) {
         HttpRequest httpRequest = getHttpFunction(method, args);
 
-        invokeBeforeHandler(httpRequest, method, args);
+        if (invokeBeforeHandler(httpRequest, method, args)) {
+            if (logger.isDebugEnabled()) {
+                logger.debug("request cancel");
+            }
+            return null;
+        }
 
         HttpResponse response;
         try {
@@ -62,10 +71,14 @@ public class HttpProxyInvoker implements InvocationHandler {
         return httpFunction.buildRequest(args);
     }
 
-    private void invokeBeforeHandler(HttpRequest httpRequest, Method method, Object[] args) {
+    private boolean invokeBeforeHandler(HttpRequest httpRequest, Method method, Object[] args) {
         for (BeforeRequestHandler beforeRequestHandler : requestHandlerContext.getBeforeRequestHandlerList()) {
-            beforeRequestHandler.handle(httpRequest, method, args);
+            boolean f = beforeRequestHandler.handle(httpRequest, method, args);
+            if (!f) {
+                return true;
+            }
         }
+        return false;
     }
 
     private HttpResponse invokeHttpRequest(HttpRequest httpRequest) {

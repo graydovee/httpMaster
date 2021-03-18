@@ -12,4 +12,8 @@ public interface HttpContent {
     Charset getEncodeType();
 
     InputStream getContent();
+
+    String getContentStr();
+
+    String getContentStr(Charset charset);
 }

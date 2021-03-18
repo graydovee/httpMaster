@@ -1,9 +1,8 @@
 package cn.graydove.httpmaster.core.engine.support.okhttp;
 
 import cn.graydove.httpmaster.core.exception.HttpRequestException;
-import cn.graydove.httpmaster.core.response.support.AbstractHttpContent;
+import cn.graydove.httpmaster.core.response.support.AbstractStringHttpContent;
 import okhttp3.MediaType;
-import okhttp3.Response;
 import okhttp3.ResponseBody;
 
 import java.io.IOException;
@@ -11,7 +10,7 @@ import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
-public class OkHttpContent extends AbstractHttpContent {
+public class OkHttpContent extends AbstractStringHttpContent {
 
     private final ResponseBody responseBody;
 

@@ -9,8 +9,6 @@ import cn.graydove.httpmaster.core.request.HttpRequestFactory;
 import cn.graydove.httpmaster.core.request.support.DefaultHttpRequestFactory;
 import cn.graydove.httpmaster.core.response.HttpContent;
 import cn.graydove.httpmaster.core.response.HttpResponse;
-import cn.graydove.httpmaster.core.response.support.StringHttpContent;
-import cn.graydove.httpmaster.core.engine.support.httpclient.HttpClientEngine;
 import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.lang.Pair;
 import cn.hutool.core.util.StrUtil;
@@ -44,11 +42,11 @@ public class HttpTest {
         for (Pair<String, String> head : response.getHeader()) {
             System.out.println(head.getKey() + ":" + head.getValue());
         }
-        StringHttpContent stringContent = new StringHttpContent(response.getHttpContent());
+        HttpContent httpContent = response.getHttpContent();
 
         System.out.println("------------------------------------------------------");
 
-        JSONObject jsonObject = JSONUtil.parseObj(stringContent.getContentStr());
+        JSONObject jsonObject = JSONUtil.parseObj(httpContent.getContentStr());
         for (Map.Entry<String, Object> entry : jsonObject.entrySet()) {
             System.out.println(entry.getKey() + ": " +entry.getValue());
         }
@@ -67,8 +65,8 @@ public class HttpTest {
                 .build();
 
         response = engine.get(httpRequest);
-        StringHttpContent stringHttpContent = new StringHttpContent(response.getHttpContent());
-        System.out.println(stringHttpContent.getContentStr());
+        httpContent = response.getHttpContent();
+        System.out.println(httpContent.getContentStr());
     }
 
     @Test
@@ -79,7 +77,7 @@ public class HttpTest {
                 .addHeader(HeaderConstant.USER_AGENT, "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.80 Safari/537.36")
                 .build();
         HttpResponse response = engine.get(request);
-        String str = new StringHttpContent(response.getHttpContent()).getContentStr();
+        String str = response.getHttpContent().getContentStr();
         Assert.assertNotNull(str);
     }
 
