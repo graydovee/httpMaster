@@ -1,7 +1,6 @@
-package cn.graydove.httpmaster.starter.handler.support;
+package cn.graydove.httpmaster.starter.handler.impl;
 
 import cn.graydove.httpmaster.core.exception.HttpException;
-import cn.graydove.httpmaster.starter.exception.BadRequestException;
 import cn.graydove.httpmaster.starter.handler.RequestFailureHandler;
 import cn.hutool.core.util.StrUtil;
 

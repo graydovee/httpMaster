@@ -1,4 +1,4 @@
-package cn.graydove.httpmaster.starter.handler.support.relover;
+package cn.graydove.httpmaster.starter.handler.impl.relover;
 
 import cn.graydove.httpmaster.core.response.HttpResponse;
 import cn.hutool.core.convert.Convert;
@@ -17,6 +17,6 @@ public class BasicReturnResolver implements ReturnResolver {
 
     @Override
     public Object resolve(HttpResponse httpResponse, Method method) {
-        return Convert.convert(method.getReturnType(), StringContentContext.getStrContent(httpResponse));
+        return Convert.convert(method.getReturnType(), httpResponse.getHttpContent().getContentStr());
     }
 }

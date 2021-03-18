@@ -1,20 +1,20 @@
-package cn.graydove.httpmaster.starter.handler.support.relover;
+package cn.graydove.httpmaster.starter.handler.impl.relover;
 
 import cn.graydove.httpmaster.core.response.HttpResponse;
 import org.springframework.core.annotation.Order;
 
 import java.lang.reflect.Method;
 
-@Order(ResolverOrderConstant.BYTE_ARRAY)
-public class ByteArrayReturnResolver extends SpecialTypeReturnResolver {
+@Order(ResolverOrderConstant.STRING)
+public class StringReturnResolver extends SpecialTypeReturnResolver {
 
     @Override
     protected Class<?>[] supportClass() {
-        return new Class[]{byte[].class};
+        return new Class[]{String.class};
     }
 
     @Override
     public Object resolve(HttpResponse httpResponse, Method method) {
-        return httpResponse.getHttpContent().getContentBytes();
+        return httpResponse.getHttpContent().getContentStr();
     }
 }

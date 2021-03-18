@@ -1,4 +1,4 @@
-package cn.graydove.httpmaster.starter.handler.support.relover;
+package cn.graydove.httpmaster.starter.handler.impl.relover;
 
 import cn.graydove.httpmaster.core.response.HttpResponse;
 import cn.hutool.json.JSONUtil;
@@ -16,6 +16,6 @@ public class BeanReturnResolver implements ReturnResolver {
 
     @Override
     public Object resolve(HttpResponse httpResponse, Method method) {
-        return JSONUtil.toBean(StringContentContext.getStrContent(httpResponse), method.getReturnType());
+        return JSONUtil.toBean(httpResponse.getHttpContent().getContentStr(), method.getReturnType());
     }
 }

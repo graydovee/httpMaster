@@ -1,4 +1,4 @@
-package cn.graydove.httpmaster.starter.handler.support;
+package cn.graydove.httpmaster.starter.handler.impl;
 
 import cn.graydove.httpmaster.core.response.HttpResponse;
 import cn.graydove.httpmaster.starter.exception.BadRequestException;

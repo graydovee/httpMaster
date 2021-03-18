@@ -1,9 +1,8 @@
-package cn.graydove.httpmaster.starter.handler.support;
+package cn.graydove.httpmaster.starter.handler.impl;
 
 import cn.graydove.httpmaster.core.response.HttpResponse;
 import cn.graydove.httpmaster.starter.bean.OrderBeanRegister;
-import cn.graydove.httpmaster.starter.handler.support.relover.ReturnResolver;
-import cn.graydove.httpmaster.starter.handler.support.relover.StringContentContext;
+import cn.graydove.httpmaster.starter.handler.impl.relover.ReturnResolver;
 import cn.hutool.core.util.ClassUtil;
 import org.springframework.core.annotation.Order;
 
@@ -24,17 +23,13 @@ public class ReturnResolverAfterRequestHandler extends AbstractAutoCloseAfterReq
         if (ClassUtil.isAssignable(response.getClass(), type)) {
             return null;
         }
-        try {
-            for (ReturnResolver resolver : returnResolverRegister.getData()) {
-                if (resolver.isSupport(type)) {
-                    Object o = resolver.resolve(response, method);
-                    if (o != null) {
-                        return o;
-                    }
+        for (ReturnResolver resolver : returnResolverRegister.getData()) {
+            if (resolver.isSupport(type)) {
+                Object o = resolver.resolve(response, method);
+                if (o != null) {
+                    return o;
                 }
             }
-        } finally {
-            StringContentContext.clear();
         }
         return null;
     }
