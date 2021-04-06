@@ -1,4 +1,5 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-cn.graydove.httpmaster.starter.config.HttpClientConfiguration,\
+cn.graydove.httpmaster.starter.config.support.HttpClientConfiguration,\
+cn.graydove.httpmaster.starter.config.support.OkHttpConfiguration,\
 cn.graydove.httpmaster.starter.config.HttpMasterConfiguration,\
 cn.graydove.httpmaster.starter.config.RequestHandlerConfiguration

@@ -1,2 +1,4 @@
 server:
   port: 8853
+http-master:
+  engine: httpClient

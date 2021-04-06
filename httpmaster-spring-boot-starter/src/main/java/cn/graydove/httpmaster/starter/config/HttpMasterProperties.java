@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
  */
 @Data
 @Component
-@ConfigurationProperties(prefix = "http-master")
+@ConfigurationProperties(prefix = ConfigConstant.PROPERTIES_PREFIX)
 public class HttpMasterProperties {
+
+    private String engine = ConfigConstant.Engine.HTTP_CLIENT;
 }

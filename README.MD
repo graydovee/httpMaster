@@ -101,9 +101,9 @@ public interface DemoClient {
 * 接入httpclient、okHttp
 * 完成httpmaster-spring-boot-starter的基本功能和拓展接口
 * 拓展返回值处理接口
+* 自定义配置属性
 
 # 未完成
-* 自定义配置属性
 
 # 未来计划
 * 对微服务系统做支持
