@@ -7,6 +7,9 @@ import cn.graydove.httpmaster.core.request.*;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * @author graydove
+ */
 public class DefaultHttpRequest implements HttpRequest {
 
     public final static Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;

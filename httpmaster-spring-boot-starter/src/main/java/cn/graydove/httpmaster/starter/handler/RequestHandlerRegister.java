@@ -1,5 +1,8 @@
 package cn.graydove.httpmaster.starter.handler;
 
+/**
+ * @author graydove
+ */
 public interface RequestHandlerRegister {
 
     void registerBeforeRequestHandler(BeforeRequestHandler beforeRequestHandler);

@@ -3,6 +3,9 @@ package cn.graydove.httpmaster.core.request.support;
 import cn.graydove.httpmaster.core.request.HttpParam;
 import cn.graydove.httpmaster.core.request.HttpRequest;
 
+/**
+ * @author graydove
+ */
 public abstract class AbstractHttpParam implements HttpParam {
 
     protected HttpRequest httpRequest;

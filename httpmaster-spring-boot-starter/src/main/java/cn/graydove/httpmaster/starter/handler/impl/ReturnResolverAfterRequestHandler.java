@@ -8,6 +8,9 @@ import org.springframework.core.annotation.Order;
 
 import java.lang.reflect.Method;
 
+/**
+ * @author graydove
+ */
 @Order(Integer.MAX_VALUE - 10)
 public class ReturnResolverAfterRequestHandler extends AbstractAutoCloseAfterRequestHandler {
 

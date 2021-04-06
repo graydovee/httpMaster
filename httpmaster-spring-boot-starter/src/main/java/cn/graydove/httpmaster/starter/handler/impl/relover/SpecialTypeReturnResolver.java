@@ -3,6 +3,9 @@ package cn.graydove.httpmaster.starter.handler.impl.relover;
 import cn.graydove.httpmaster.core.common.Singleton;
 import cn.hutool.core.util.ClassUtil;
 
+/**
+ * @author graydove
+ */
 public abstract class SpecialTypeReturnResolver implements ReturnResolver {
 
     private Singleton<Class<?>[]> supportClasses = Singleton.of(this::supportClass);

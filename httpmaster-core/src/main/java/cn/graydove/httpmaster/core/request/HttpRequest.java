@@ -6,6 +6,9 @@ import cn.graydove.httpmaster.core.enums.HttpMethod;
 import java.nio.charset.Charset;
 import java.util.Map;
 
+/**
+ * @author graydove
+ */
 public interface HttpRequest {
 
     HttpRequestFactory getHttpRequestFactory();

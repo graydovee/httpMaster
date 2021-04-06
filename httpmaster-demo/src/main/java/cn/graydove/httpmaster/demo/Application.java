@@ -4,6 +4,9 @@ import cn.graydove.httpmaster.starter.config.EnableHttpMaster;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * @author graydove
+ */
 @EnableHttpMaster
 @SpringBootApplication
 public class Application {

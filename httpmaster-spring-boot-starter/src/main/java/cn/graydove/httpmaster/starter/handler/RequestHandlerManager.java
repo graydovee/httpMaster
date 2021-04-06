@@ -4,6 +4,9 @@ import cn.graydove.httpmaster.starter.bean.OrderBeanRegister;
 
 import java.util.List;
 
+/**
+ * @author graydove
+ */
 public class RequestHandlerManager implements RequestHandlerContext, RequestHandlerRegister {
 
     private final OrderBeanRegister<BeforeRequestHandler> beforeRequestHandlerRegister;

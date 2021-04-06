@@ -6,6 +6,9 @@ import cn.hutool.core.util.StrUtil;
 
 import java.lang.reflect.Method;
 
+/**
+ * @author graydove
+ */
 public class ExceptionRequestFailureHandler implements RequestFailureHandler {
 
     @Override

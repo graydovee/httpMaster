@@ -10,11 +10,14 @@ import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * @author graydove
+ */
 public class OkHttpContent extends AbstractStringHttpContent {
 
     private final ResponseBody responseBody;
 
-    private static final Charset defaultCharSet = StandardCharsets.UTF_8;
+    private static final Charset DEFAULT_CHAR_SET = StandardCharsets.UTF_8;
 
     public OkHttpContent(ResponseBody responseBody) {
         this.responseBody = responseBody;
@@ -28,7 +31,7 @@ public class OkHttpContent extends AbstractStringHttpContent {
     @Override
     protected Charset createEncodeType() {
         MediaType mediaType = responseBody.contentType();
-        return mediaType != null ? mediaType.charset(defaultCharSet) : defaultCharSet;
+        return mediaType != null ? mediaType.charset(DEFAULT_CHAR_SET) : DEFAULT_CHAR_SET;
     }
 
     @Override

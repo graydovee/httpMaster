@@ -5,6 +5,9 @@ import org.springframework.core.annotation.Order;
 
 import java.lang.reflect.Method;
 
+/**
+ * @author graydove
+ */
 @Order(ResolverOrderConstant.STRING)
 public class StringReturnResolver extends SpecialTypeReturnResolver {
 

@@ -7,6 +7,9 @@ import cn.hutool.core.net.url.UrlBuilder;
 import cn.hutool.core.net.url.UrlQuery;
 import cn.hutool.core.util.StrUtil;
 
+/**
+ * @author graydove
+ */
 public class DefaultHttpUrl extends AbstractHttpParam implements HttpUrl {
 
     private UrlBuilder urlBuilder;

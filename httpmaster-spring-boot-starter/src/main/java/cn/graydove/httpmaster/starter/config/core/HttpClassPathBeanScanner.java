@@ -13,6 +13,9 @@ import org.springframework.core.type.filter.AnnotationTypeFilter;
 
 import java.util.Set;
 
+/**
+ * @author graydove
+ */
 public class HttpClassPathBeanScanner extends ClassPathBeanDefinitionScanner {
     public HttpClassPathBeanScanner(BeanDefinitionRegistry registry) {
         super(registry, false);

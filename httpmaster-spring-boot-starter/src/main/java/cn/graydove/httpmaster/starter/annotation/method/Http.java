@@ -6,6 +6,9 @@ import cn.graydove.httpmaster.starter.enums.HttpBodyStrategy;
 
 import java.lang.annotation.*;
 
+/**
+ * @author graydove
+ */
 @Target({ElementType.METHOD,ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented

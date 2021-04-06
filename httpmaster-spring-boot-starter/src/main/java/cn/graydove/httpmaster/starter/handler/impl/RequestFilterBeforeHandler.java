@@ -9,6 +9,9 @@ import cn.graydove.httpmaster.starter.handler.impl.filter.RequestFilterChain;
 
 import java.lang.reflect.Method;
 
+/**
+ * @author graydove
+ */
 public class RequestFilterBeforeHandler implements BeforeRequestHandler {
 
     private final OrderBeanRegister<RequestFilter> requestFilterRegister;

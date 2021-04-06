@@ -6,6 +6,9 @@ import cn.graydove.httpmaster.core.request.KeyValueHttpBody;
 
 import java.util.Map;
 
+/**
+ * @author graydove
+ */
 public class MapKeyValueHttpBody extends AbstractHttpParam implements KeyValueHttpBody {
 
     private Map<Object, Object> data;

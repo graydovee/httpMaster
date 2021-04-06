@@ -9,6 +9,9 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author graydove
+ */
 public class DefaultHttpQuery extends AbstractHttpParam implements HttpQuery {
 
     private Map<String, Object> params;

@@ -8,6 +8,9 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 
 import java.io.IOException;
 
+/**
+ * @author graydove
+ */
 public class HttpClientResponse extends AbstractHttpResponse {
 
     private final CloseableHttpResponse response;

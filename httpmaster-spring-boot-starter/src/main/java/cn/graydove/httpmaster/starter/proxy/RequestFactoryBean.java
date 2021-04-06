@@ -27,6 +27,9 @@ import java.lang.reflect.Proxy;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
+/**
+ * @author graydove
+ */
 public class RequestFactoryBean<T> implements FactoryBean<T> {
 
     private Class<T> clazz;

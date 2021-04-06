@@ -5,6 +5,9 @@ import cn.graydove.httpmaster.core.request.*;
 
 import java.nio.charset.Charset;
 
+/**
+ * @author graydove
+ */
 public class DefaultHttpRequestFactory implements HttpRequestFactory {
 
     private Charset defaultCharset;

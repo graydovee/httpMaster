@@ -7,8 +7,15 @@ import cn.hutool.core.util.StrUtil;
 
 import java.util.Optional;
 
+/**
+ * @author graydove
+ */
+
 public enum HttpMediaType {
 
+    /**
+     * 默认
+     */
     URL_ENCODED("application/x-www-form-urlencoded"),
 
     MULTIPART("multipart/form-data"),

@@ -12,6 +12,18 @@
     <artifactId>httpmaster-core</artifactId>
     <version>${version}</version>
 </dependency>
+
+<!--引入HttpClient或者OkHttp-->
+<dependency>
+    <groupId>org.apache.httpcomponents</groupId>
+    <artifactId>httpclient</artifactId>
+    <version>${httpclient.version}</version>
+</dependency>
+<dependency>
+    <groupId>commons-logging</groupId>
+    <artifactId>commons-logging</artifactId>
+    <version>${commons-logging.version}</version>
+</dependency>
 ```
 2.使用
 ```java

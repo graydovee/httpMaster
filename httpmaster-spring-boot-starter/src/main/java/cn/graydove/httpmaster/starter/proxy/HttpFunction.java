@@ -13,6 +13,9 @@ import cn.hutool.core.util.ObjectUtil;
 
 import java.util.*;
 
+/**
+ * @author graydove
+ */
 public class HttpFunction {
 
     private final RequestDefinition requestDefinition;

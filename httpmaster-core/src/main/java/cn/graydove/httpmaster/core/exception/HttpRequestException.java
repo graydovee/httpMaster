@@ -1,5 +1,8 @@
 package cn.graydove.httpmaster.core.exception;
 
+/**
+ * @author graydove
+ */
 public class HttpRequestException extends HttpException {
     public HttpRequestException() {
     }

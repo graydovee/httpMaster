@@ -2,6 +2,9 @@ package cn.graydove.httpmaster.starter.exception;
 
 import cn.graydove.httpmaster.core.exception.HttpRequestException;
 
+/**
+ * @author graydove
+ */
 public class BadRequestException extends HttpRequestException {
 
     private int httpStatus;

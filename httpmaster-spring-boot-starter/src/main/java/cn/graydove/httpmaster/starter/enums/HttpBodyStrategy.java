@@ -1,5 +1,9 @@
 package cn.graydove.httpmaster.starter.enums;
 
+/**
+ * @author graydove
+ */
+
 public enum HttpBodyStrategy {
 
     /**

@@ -2,6 +2,9 @@ package cn.graydove.httpmaster.core.request.support;
 
 import java.util.Map;
 
+/**
+ * @author graydove
+ */
 public interface MapFactory<K, V> {
 
     default Map<K, V> newMap(Map<? extends K, ? extends V> map) {

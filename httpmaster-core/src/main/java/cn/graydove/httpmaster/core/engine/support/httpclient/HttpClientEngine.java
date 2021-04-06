@@ -24,6 +24,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * @author graydove
+ */
 public class HttpClientEngine extends AbstractHttpEngine {
 
     private CloseableHttpClient client;

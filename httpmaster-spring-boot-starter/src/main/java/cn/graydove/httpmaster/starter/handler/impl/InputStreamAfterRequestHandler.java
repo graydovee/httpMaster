@@ -8,6 +8,9 @@ import org.springframework.core.annotation.Order;
 import java.io.*;
 import java.lang.reflect.Method;
 
+/**
+ * @author graydove
+ */
 @Order(Integer.MAX_VALUE - 20)
 public class InputStreamAfterRequestHandler implements AfterRequestHandler {
     @Override

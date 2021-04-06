@@ -4,6 +4,9 @@ import cn.graydove.httpmaster.core.common.KVList;
 
 import java.io.Closeable;
 
+/**
+ * @author graydove
+ */
 public interface HttpResponse extends Closeable {
 
     int getStatusCode();

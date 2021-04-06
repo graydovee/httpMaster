@@ -5,6 +5,9 @@ import cn.graydove.httpmaster.core.request.HttpRequest;
 import cn.graydove.httpmaster.core.response.HttpResponse;
 import cn.hutool.core.lang.Assert;
 
+/**
+ * @author graydove
+ */
 public interface HttpEngine {
 
     HttpResponse get(HttpRequest httpRequest);

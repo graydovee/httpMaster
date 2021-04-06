@@ -7,6 +7,9 @@ import org.springframework.core.annotation.Order;
 
 import java.lang.reflect.Method;
 
+/**
+ * @author graydove
+ */
 @Order(ResolverOrderConstant.BASIC)
 public class BasicReturnResolver implements ReturnResolver {
 

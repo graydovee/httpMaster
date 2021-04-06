@@ -3,6 +3,9 @@ package cn.graydove.httpmaster.core.request.support;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author graydove
+ */
 public class HashMapFactory<K, V> implements MapFactory<K, V> {
 
     @Override

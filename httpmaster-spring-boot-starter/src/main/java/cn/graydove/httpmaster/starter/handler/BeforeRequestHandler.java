@@ -4,6 +4,9 @@ import cn.graydove.httpmaster.core.request.HttpRequest;
 
 import java.lang.reflect.Method;
 
+/**
+ * @author graydove
+ */
 public interface BeforeRequestHandler {
 
     /**

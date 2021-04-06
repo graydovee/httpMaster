@@ -5,6 +5,9 @@ import cn.graydove.httpmaster.core.response.HttpResponse;
 import java.lang.reflect.Method;
 
 
+/**
+ * @author graydove
+ */
 public interface ReturnResolver {
 
     boolean isSupport(Class<?> returnType);

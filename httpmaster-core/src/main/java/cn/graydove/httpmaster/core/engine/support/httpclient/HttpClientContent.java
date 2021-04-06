@@ -11,6 +11,9 @@ import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.util.Optional;
 
+/**
+ * @author graydove
+ */
 public class HttpClientContent extends AbstractStringHttpContent {
 
     private final HttpEntity entity;

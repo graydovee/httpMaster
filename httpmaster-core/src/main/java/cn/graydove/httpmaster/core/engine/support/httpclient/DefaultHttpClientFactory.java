@@ -19,6 +19,9 @@ import java.security.KeyManagementException;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * @author graydove
+ */
 public class DefaultHttpClientFactory implements HttpClientFactory {
     @Override
     public CloseableHttpClient newClient() {

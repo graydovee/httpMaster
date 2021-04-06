@@ -8,6 +8,9 @@ import cn.graydove.httpmaster.starter.annotation.Query;
 import cn.graydove.httpmaster.starter.annotation.method.HttpGet;
 import cn.graydove.httpmaster.starter.annotation.method.HttpPost;
 
+/**
+ * @author graydove
+ */
 @HttpService(url = "http://localhost:8080")
 public interface DemoService {
 

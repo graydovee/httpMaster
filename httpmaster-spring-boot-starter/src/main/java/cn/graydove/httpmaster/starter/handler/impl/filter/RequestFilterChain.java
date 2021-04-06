@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.RandomAccess;
 
+/**
+ * @author graydove
+ */
 public class RequestFilterChain {
 
     private static final Logger logger = LoggerFactory.getLogger(RequestFilterChain.class);

@@ -4,6 +4,9 @@ import cn.graydove.httpmaster.core.common.KVConsumer;
 
 import java.util.Map;
 
+/**
+ * @author graydove
+ */
 public interface HttpQuery extends HttpParam {
 
     HttpQuery addQuery(String key, Object value);

@@ -6,6 +6,9 @@ import cn.hutool.http.HttpStatus;
 
 import java.lang.reflect.Method;
 
+/**
+ * @author graydove
+ */
 public interface AbstractAfterRequestHandler extends AfterRequestHandler {
 
     default boolean isOk(HttpResponse response) {

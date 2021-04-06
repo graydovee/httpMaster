@@ -6,6 +6,9 @@ import cn.graydove.httpmaster.starter.enums.HttpBodyStrategy;
 
 import java.util.List;
 
+/**
+ * @author graydove
+ */
 public class RequestDefinition {
     
     private HttpRequestFactory httpRequestFactory;

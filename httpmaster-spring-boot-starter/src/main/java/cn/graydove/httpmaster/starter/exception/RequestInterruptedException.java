@@ -1,5 +1,8 @@
 package cn.graydove.httpmaster.starter.exception;
 
+/**
+ * @author graydove
+ */
 public class RequestInterruptedException extends Exception {
 
     public RequestInterruptedException() {

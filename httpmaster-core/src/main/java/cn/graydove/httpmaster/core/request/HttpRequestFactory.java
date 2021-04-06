@@ -2,6 +2,9 @@ package cn.graydove.httpmaster.core.request;
 
 import java.nio.charset.Charset;
 
+/**
+ * @author graydove
+ */
 public interface HttpRequestFactory {
 
     HttpRequest newHttpRequest();

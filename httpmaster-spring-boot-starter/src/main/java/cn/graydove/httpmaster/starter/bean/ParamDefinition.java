@@ -3,6 +3,9 @@ package cn.graydove.httpmaster.starter.bean;
 import cn.hutool.core.lang.Assert;
 import cn.hutool.core.util.StrUtil;
 
+/**
+ * @author graydove
+ */
 public class ParamDefinition {
 
     private String key;

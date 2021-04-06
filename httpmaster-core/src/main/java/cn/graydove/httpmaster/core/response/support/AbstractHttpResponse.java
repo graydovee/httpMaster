@@ -7,6 +7,9 @@ import cn.graydove.httpmaster.core.response.HttpResponse;
 
 import java.util.function.Supplier;
 
+/**
+ * @author graydove
+ */
 public abstract class AbstractHttpResponse implements HttpResponse {
 
     private Singleton<Integer> statusCode = Singleton.of(this::createStatus);
@@ -15,14 +18,17 @@ public abstract class AbstractHttpResponse implements HttpResponse {
 
     private Singleton<HttpContent> httpContent = Singleton.of(this::createHttpContent);
 
+    @Override
     public int getStatusCode() {
         return statusCode.get();
     }
 
+    @Override
     public KVList<String, String> getHeader() {
         return header.get();
     }
 
+    @Override
     public HttpContent getHttpContent() {
         return httpContent.get();
     }

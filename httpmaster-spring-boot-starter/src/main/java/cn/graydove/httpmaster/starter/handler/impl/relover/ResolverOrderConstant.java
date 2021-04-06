@@ -1,5 +1,8 @@
 package cn.graydove.httpmaster.starter.handler.impl.relover;
 
+/**
+ * @author graydove
+ */
 public interface ResolverOrderConstant {
 
     int BYTE_ARRAY = Integer.MAX_VALUE - 20;

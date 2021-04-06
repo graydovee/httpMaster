@@ -3,7 +3,14 @@ package cn.graydove.httpmaster.core.enums;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author graydove
+ */
+
 public enum HttpMethod {
+    /**
+     * Http的方法
+     */
     GET, HEAD, POST(true), PUT(true), PATCH(true), DELETE, OPTIONS, TRACE;
 
 

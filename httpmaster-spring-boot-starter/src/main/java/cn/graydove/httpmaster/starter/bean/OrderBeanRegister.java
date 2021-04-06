@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * @author graydove
+ */
 public class OrderBeanRegister<T> {
 
     private final List<T> data;

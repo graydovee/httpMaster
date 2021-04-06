@@ -4,6 +4,9 @@ import cn.graydove.httpmaster.core.common.KVConsumer;
 
 import java.util.Map;
 
+/**
+ * @author graydove
+ */
 public interface HttpHeader extends HttpParam {
 
     HttpHeader addHeader(String key, String value);

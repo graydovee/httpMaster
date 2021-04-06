@@ -6,6 +6,9 @@ import org.jetbrains.annotations.NotNull;
 import java.util.*;
 import java.util.function.Function;
 
+/**
+ * @author graydove
+ */
 public class KVList<K,V> implements List<Pair<K,V>> {
 
     private final List<Pair<K,V>> list;

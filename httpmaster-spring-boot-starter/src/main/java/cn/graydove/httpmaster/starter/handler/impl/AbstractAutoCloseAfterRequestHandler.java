@@ -9,6 +9,7 @@ import java.lang.reflect.Method;
 
 /**
  * 建议重写success和failure实现功能
+ * @author graydove
  */
 public abstract class AbstractAutoCloseAfterRequestHandler implements AbstractAfterRequestHandler {
 

@@ -7,6 +7,9 @@ import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.util.function.Supplier;
 
+/**
+ * @author graydove
+ */
 public abstract class AbstractHttpContent implements HttpContent {
 
     private Singleton<byte[]> bytes = Singleton.of(this::createBytes);

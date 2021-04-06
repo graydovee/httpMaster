@@ -8,6 +8,9 @@ import okhttp3.Response;
 
 import java.io.IOException;
 
+/**
+ * @author graydove
+ */
 public class OkHttpResponse extends AbstractHttpResponse {
 
     private final Response response;

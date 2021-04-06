@@ -8,6 +8,9 @@ import org.springframework.core.annotation.AnnotationAwareOrderComparator;
 
 import java.util.List;
 
+/**
+ * @author graydove
+ */
 @Configuration
 public class HttpMasterConfiguration {
 

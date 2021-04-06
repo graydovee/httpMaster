@@ -1,5 +1,8 @@
 package cn.graydove.httpmaster.core.common;
 
+/**
+ * @author graydove
+ */
 public class HeaderConstant {
 
     public final static String CONTENT_TYPE = "Content-Type";

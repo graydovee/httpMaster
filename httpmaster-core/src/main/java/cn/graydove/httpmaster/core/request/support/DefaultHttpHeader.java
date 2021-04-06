@@ -9,6 +9,9 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author graydove
+ */
 public class DefaultHttpHeader extends AbstractHttpParam implements HttpHeader {
 
     private Map<String, String> headers;
