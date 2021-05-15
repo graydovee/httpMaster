@@ -37,6 +37,12 @@ public class ApplicationTest {
         Assertions.assertNotNull(blog);
     }
 
+    @Test
+    void testGet() {
+        String blog = demoService.get("https://blog.graydove.cn/");
+        Assertions.assertNotNull(blog);
+    }
+
     private String getToken(String s) {
         JSONObject jsonObject = JSON.parseObject(s);
         String token = jsonObject.get("prefix") + " " + jsonObject.get("token");

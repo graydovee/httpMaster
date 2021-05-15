@@ -108,6 +108,7 @@ public class RequestFactoryBean<T> implements FactoryBean<T> {
             List<ParamDefinition> queryDefinitionList = new ArrayList<>();
             List<ParamDefinition> headerDefinitionList = new ArrayList<>();
             List<ParamDefinition> bodyDefinitionList = new ArrayList<>();
+            Integer urlPos = null;
             for (int i=0; i<parameters.length; ++i) {
                 boolean proceed = false;
                 Parameter parameter = parameters[i];
@@ -145,7 +146,15 @@ public class RequestFactoryBean<T> implements FactoryBean<T> {
                 } else {
                     queryDefinitionList.add(ParamDefinition.of(parameter.getName(), i));
                 }
+
+                //url参数
+                Url requestUrl = AnnotationUtils.findAnnotation(parameter, Url.class);
+                if (requestUrl != null) {
+                    urlPos = i;
+                }
             }
+            requestDefinition.setUrlPos(urlPos);
+
             // 3,4,5. params
             requestDefinition.setHeaderDefinitions(headerDefinitionList);
             requestDefinition.setQueryDefinitions(queryDefinitionList);

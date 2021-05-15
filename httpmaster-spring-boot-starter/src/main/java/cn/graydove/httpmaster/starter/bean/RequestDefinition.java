@@ -23,19 +23,11 @@ public class RequestDefinition {
 
     private String url;
 
+    private Integer urlPos;
+
     private HttpMethod httpMethod;
 
     public RequestDefinition() {
-    }
-
-    public RequestDefinition(HttpRequestFactory httpRequestFactory, List<ParamDefinition> headers, List<ParamDefinition> queryDefinitions, List<ParamDefinition> bodyDefinitions, HttpBodyStrategy httpBodyStrategy, String url, HttpMethod httpMethod) {
-        this.httpRequestFactory = httpRequestFactory;
-        this.headerDefinitions = headers;
-        this.queryDefinitions = queryDefinitions;
-        this.bodyDefinitions = bodyDefinitions;
-        this.httpBodyStrategy = httpBodyStrategy;
-        this.url = url;
-        this.httpMethod = httpMethod;
     }
 
     public HttpRequestFactory getHttpRequestFactory() {
@@ -84,6 +76,14 @@ public class RequestDefinition {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public Integer getUrlPos() {
+        return urlPos;
+    }
+
+    public void setUrlPos(Integer urlPos) {
+        this.urlPos = urlPos;
     }
 
     public HttpMethod getHttpMethod() {

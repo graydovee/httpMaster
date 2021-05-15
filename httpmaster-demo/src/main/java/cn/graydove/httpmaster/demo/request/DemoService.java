@@ -1,10 +1,7 @@
 package cn.graydove.httpmaster.demo.request;
 
 import cn.graydove.httpmaster.core.common.HeaderConstant;
-import cn.graydove.httpmaster.starter.annotation.Body;
-import cn.graydove.httpmaster.starter.annotation.Header;
-import cn.graydove.httpmaster.starter.annotation.HttpService;
-import cn.graydove.httpmaster.starter.annotation.Query;
+import cn.graydove.httpmaster.starter.annotation.*;
 import cn.graydove.httpmaster.starter.annotation.method.HttpGet;
 import cn.graydove.httpmaster.starter.annotation.method.HttpPost;
 
@@ -25,4 +22,7 @@ public interface DemoService {
 
     @HttpGet(url = "https://blog.graydove.cn/")
     String blog();
+
+    @HttpGet
+    String get(@Url String url);
 }

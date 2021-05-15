@@ -8,7 +8,7 @@ import cn.graydove.httpmaster.core.response.HttpResponse;
 /**
  * 引擎抽象类，必须选择以下一种方式重写
  *  1.分开重写所有get,post等方法
- *  2.单独重写request方法
+ *  2.单独重写HttpResponse execute(HttpMethod httpMethod, HttpRequest httpRequest)方法
  * @author graydove
  */
 public abstract class AbstractHttpEngine implements HttpEngine {

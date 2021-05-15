@@ -32,8 +32,9 @@ public class HttpFunction {
     public HttpRequest buildRequest(Object[] args) {
         HttpRequestFactory httpRequestFactory = requestDefinition.getHttpRequestFactory();
         HttpRequest httpRequest = httpRequestFactory.newHttpRequest()
-                .url(requestDefinition.getUrl())
+                .url(getUrl(args))
                 .method(getHttpMethod());
+
 
         List<ParamDefinition> headerDefinitions = requestDefinition.getHeaderDefinitions();
         if (CollectionUtil.isNotEmpty(headerDefinitions)) {
@@ -58,6 +59,17 @@ public class HttpFunction {
         }
 
         return httpRequest;
+    }
+
+    private String getUrl(Object[] args) {
+        Integer urlPos = requestDefinition.getUrlPos();
+        if (null != urlPos) {
+            Object url = args[urlPos];
+            if (null != url) {
+                return url.toString();
+            }
+        }
+        return requestDefinition.getUrl();
     }
 
     private Object resolveBody(Object[] args, List<ParamDefinition> bodyDefinitionList) {
