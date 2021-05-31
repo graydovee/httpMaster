@@ -2,7 +2,7 @@
 * 封装其他http框架，统一提供请求方式
 
 # 使用
-克隆项目，`mvn install`打包安装
+克隆项目，`mvn install -Dmaven.test.skip=true`打包安装
 
 ## 普通项目使用
 1. 引入依赖
