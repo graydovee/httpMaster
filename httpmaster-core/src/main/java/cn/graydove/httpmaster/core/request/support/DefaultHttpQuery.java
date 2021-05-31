@@ -23,14 +23,16 @@ public class DefaultHttpQuery extends AbstractHttpParam implements HttpQuery {
 
     @Override
     public DefaultHttpQuery addQuery(String key, Object value) {
-        params.put(key, value);
+        if (value != null) {
+            params.put(key, value);
+        }
         return this;
     }
 
     @Override
     public DefaultHttpQuery addQueries(Map<?, ?> params) {
         for (Map.Entry<?, ?> entry : params.entrySet()) {
-            this.params.put(entry.getKey().toString(), entry.getValue());
+            addQuery(entry.getKey().toString(), entry.getValue());
         }
         return this;
     }
