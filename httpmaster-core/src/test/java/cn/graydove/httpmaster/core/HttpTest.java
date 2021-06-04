@@ -2,6 +2,7 @@ package cn.graydove.httpmaster.core;
 
 import cn.graydove.httpmaster.core.common.HeaderConstant;
 import cn.graydove.httpmaster.core.engine.HttpEngine;
+import cn.graydove.httpmaster.core.engine.RetryHttpEngine;
 import cn.graydove.httpmaster.core.engine.support.okhttp.OkHttpEngine;
 import cn.graydove.httpmaster.core.enums.HttpMethod;
 import cn.graydove.httpmaster.core.request.HttpRequest;
@@ -23,7 +24,7 @@ import java.util.Map;
 
 public class HttpTest {
 
-    private HttpEngine engine = new OkHttpEngine();
+    private HttpEngine engine = new RetryHttpEngine(new OkHttpEngine());
 
     private HttpRequestFactory httpRequestFactory = new DefaultHttpRequestFactory();
 
@@ -109,5 +110,18 @@ public class HttpTest {
             System.out.println(e.getMessage());
             System.out.println("OK");
         }
+    }
+
+
+    @Test
+    public void spiderError() {
+        Assert.assertThrows(RuntimeException.class, () -> {
+            HttpRequest request = httpRequestFactory.newHttpRequest()
+                    .url("https://localhost")
+                    .header()
+                    .addHeader(HeaderConstant.USER_AGENT, "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.80 Safari/537.36")
+                    .build();
+            engine.get(request);
+        });
     }
 }

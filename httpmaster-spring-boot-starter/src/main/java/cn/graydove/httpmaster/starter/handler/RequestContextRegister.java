@@ -1,9 +1,13 @@
 package cn.graydove.httpmaster.starter.handler;
 
+import cn.graydove.httpmaster.core.engine.HttpEngine;
+
 /**
  * @author graydove
  */
-public interface RequestHandlerRegister {
+public interface RequestContextRegister {
+
+    void setHttpEngine(HttpEngine httpEngine);
 
     void registerBeforeRequestHandler(BeforeRequestHandler beforeRequestHandler);
 

@@ -12,12 +12,13 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 
 /**
  * @author graydove
  */
 @Configuration
-@ConditionalOnProperty(prefix = ConfigConstant.PROPERTIES_PREFIX, name = "engine", havingValue = ConfigConstant.Engine.HTTP_CLIENT)
+@ConditionalOnProperty(prefix = ConfigConstant.PROPERTIES_PREFIX + ".engine", name = "type", havingValue = ConfigConstant.Engine.HTTP_CLIENT)
 public class HttpClientConfiguration  {
 
     @Bean

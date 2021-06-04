@@ -8,7 +8,7 @@ import cn.graydove.httpmaster.core.response.HttpResponse;
 import cn.graydove.httpmaster.starter.handler.AfterRequestHandler;
 import cn.graydove.httpmaster.starter.handler.BeforeRequestHandler;
 import cn.graydove.httpmaster.starter.handler.RequestFailureHandler;
-import cn.graydove.httpmaster.starter.handler.RequestHandlerContext;
+import cn.graydove.httpmaster.starter.handler.RequestContext;
 import cn.hutool.core.util.StrUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,14 +27,11 @@ public class HttpProxyInvoker implements InvocationHandler {
     
     private Map<Method, HttpFunction> functionMap;
     
-    private HttpEngine httpEngine;
-    
-    private RequestHandlerContext requestHandlerContext;
+    private RequestContext requestContext;
 
-    public HttpProxyInvoker(Map<Method, HttpFunction> functionMap, HttpEngine httpEngine, RequestHandlerContext requestHandlerContext) {
+    public HttpProxyInvoker(Map<Method, HttpFunction> functionMap, RequestContext requestContext) {
         this.functionMap = functionMap;
-        this.httpEngine = httpEngine;
-        this.requestHandlerContext = requestHandlerContext;
+        this.requestContext = requestContext;
     }
 
     @Override
@@ -73,7 +70,7 @@ public class HttpProxyInvoker implements InvocationHandler {
     }
 
     private boolean invokeBeforeHandler(HttpRequest httpRequest, Method method, Object[] args) {
-        for (BeforeRequestHandler beforeRequestHandler : requestHandlerContext.getBeforeRequestHandlerList()) {
+        for (BeforeRequestHandler beforeRequestHandler : requestContext.getBeforeRequestHandlerList()) {
             boolean f = beforeRequestHandler.handle(httpRequest, method, args);
             if (!f) {
                 return true;
@@ -83,11 +80,11 @@ public class HttpProxyInvoker implements InvocationHandler {
     }
 
     private HttpResponse invokeHttpRequest(HttpRequest httpRequest) {
-        return httpEngine.execute(httpRequest);
+        return requestContext.getHttpEngine().execute(httpRequest);
     }
 
     private Object invokeAfterHandler(HttpResponse response, Method method, Object[] args) {
-        for (AfterRequestHandler afterRequestHandler : requestHandlerContext.getAfterRequestHandlerList()) {
+        for (AfterRequestHandler afterRequestHandler : requestContext.getAfterRequestHandlerList()) {
             Object o = afterRequestHandler.handle(response, method, args);
             if (null != o) {
                 return o;
@@ -97,7 +94,7 @@ public class HttpProxyInvoker implements InvocationHandler {
     }
     
     private Object invokeFailureHandler(Throwable e, Method method, Object[] args) {
-        for (RequestFailureHandler requestFailureHandler : requestHandlerContext.getRequestFailureHandlerList()) {
+        for (RequestFailureHandler requestFailureHandler : requestContext.getRequestFailureHandlerList()) {
             Object o = requestFailureHandler.handle(e, method, args);
             if (null != o) {
                 return o;

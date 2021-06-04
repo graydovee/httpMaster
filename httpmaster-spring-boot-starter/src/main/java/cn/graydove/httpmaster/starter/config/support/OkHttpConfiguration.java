@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
  * @author graydove
  */
 @Configuration
-@ConditionalOnProperty(prefix = ConfigConstant.PROPERTIES_PREFIX, name = "engine", havingValue = ConfigConstant.Engine.OK_HTTP)
+@ConditionalOnProperty(prefix = ConfigConstant.PROPERTIES_PREFIX + ".engine", name = "type", havingValue = ConfigConstant.Engine.OK_HTTP)
 public class OkHttpConfiguration {
 
     @Bean

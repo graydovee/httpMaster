@@ -1,6 +1,5 @@
 package cn.graydove.httpmaster.starter.proxy;
 
-import cn.graydove.httpmaster.core.engine.HttpEngine;
 import cn.graydove.httpmaster.core.enums.HttpMethod;
 import cn.graydove.httpmaster.core.request.HttpRequestFactory;
 import cn.graydove.httpmaster.starter.annotation.*;
@@ -10,7 +9,7 @@ import cn.graydove.httpmaster.starter.annotation.method.Http;
 import cn.graydove.httpmaster.starter.bean.ParamDefinition;
 import cn.graydove.httpmaster.starter.bean.RequestDefinition;
 import cn.graydove.httpmaster.starter.enums.HttpBodyStrategy;
-import cn.graydove.httpmaster.starter.handler.RequestHandlerContext;
+import cn.graydove.httpmaster.starter.handler.RequestContext;
 import cn.graydove.httpmaster.starter.annotation.Body;
 import cn.graydove.httpmaster.starter.annotation.HttpService;
 import cn.hutool.core.collection.CollectionUtil;
@@ -36,15 +35,12 @@ public class RequestFactoryBean<T> implements FactoryBean<T> {
 
     private HttpRequestFactory httpRequestFactory;
 
-    private HttpEngine httpEngine;
+    private RequestContext requestContext;
 
-    private RequestHandlerContext requestHandlerContext;
-
-    public RequestFactoryBean(Class<T> clazz, HttpRequestFactory httpRequestFactory, HttpEngine httpEngine, RequestHandlerContext requestHandlerContext) {
+    public RequestFactoryBean(Class<T> clazz, HttpRequestFactory httpRequestFactory, RequestContext requestContext) {
         this.clazz = clazz;
         this.httpRequestFactory = httpRequestFactory;
-        this.httpEngine = httpEngine;
-        this.requestHandlerContext = requestHandlerContext;
+        this.requestContext = requestContext;
     }
 
     @Override
@@ -64,7 +60,7 @@ public class RequestFactoryBean<T> implements FactoryBean<T> {
     @SuppressWarnings("unchecked")
     private T createProxy() {
         Map<Method, HttpFunction> functionMap = createFunctionMap();
-        InvocationHandler h = new HttpProxyInvoker(functionMap, httpEngine, requestHandlerContext);
+        InvocationHandler h = new HttpProxyInvoker(functionMap, requestContext);
         return (T) Proxy.newProxyInstance(getClass().getClassLoader(), new Class[]{clazz}, h);
     }
 

@@ -2,7 +2,7 @@ package cn.graydove.httpmaster.starter.config;
 
 import cn.graydove.httpmaster.core.request.HttpRequestFactory;
 import cn.graydove.httpmaster.core.request.support.DefaultHttpRequestFactory;
-import cn.graydove.httpmaster.starter.config.core.HandlerRegisterBeanPostProcessor;
+import cn.graydove.httpmaster.starter.config.core.HttpEngineBeanPostProcessor;
 import cn.graydove.httpmaster.starter.handler.*;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
@@ -17,16 +17,16 @@ import java.util.List;
 public class HttpMasterConfiguration {
 
     @Bean
-    public HandlerRegisterBeanPostProcessor handlerRegisterBeanPostProcessor() {
-        return new HandlerRegisterBeanPostProcessor();
+    public HttpEngineBeanPostProcessor handlerRegisterBeanPostProcessor() {
+        return new HttpEngineBeanPostProcessor();
     }
 
     @Bean
-    public RequestHandlerManager requestHandlerManager(
+    public RequestManager requestHandlerManager(
             List<BeforeRequestHandler> beforeRequestHandlerList,
             List<AfterRequestHandler> afterRequestHandlerList,
             List<RequestFailureHandler> requestFailureHandlerList) {
-        return new RequestHandlerManager(beforeRequestHandlerList, afterRequestHandlerList, requestFailureHandlerList);
+        return new RequestManager(beforeRequestHandlerList, afterRequestHandlerList, requestFailureHandlerList);
     }
 
 
