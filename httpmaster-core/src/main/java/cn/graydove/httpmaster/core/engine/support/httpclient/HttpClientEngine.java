@@ -9,7 +9,6 @@ import cn.graydove.httpmaster.core.request.HttpBody;
 import cn.graydove.httpmaster.core.request.HttpRequest;
 import cn.graydove.httpmaster.core.response.HttpResponse;
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.json.JSONUtil;
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -115,7 +114,7 @@ public class HttpClientEngine extends AbstractHttpEngine {
                 }
             case JSON:
                 try {
-                    return new StringEntity(JSONUtil.toJsonStr(httpRequest.getHttpBody().getData()));
+                    return new StringEntity(httpRequest.getJsonParser().toJsonStr(httpRequest.getHttpBody().getData()));
                 } catch (UnsupportedEncodingException e) {
                     throw new UnsupportedException(e);
                 }

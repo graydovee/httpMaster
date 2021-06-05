@@ -21,5 +21,7 @@ public interface HttpRequestFactory {
 
     HttpUrl newHttpUrl(HttpRequest httpRequest);
 
+    JsonParser newJsonParser();
+
     void setDefaultCharset(Charset charset);
 }

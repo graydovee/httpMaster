@@ -1,6 +1,7 @@
 package cn.graydove.httpmaster.core.request.support;
 
 
+import cn.graydove.httpmaster.core.common.Singleton;
 import cn.graydove.httpmaster.core.enums.HttpMethod;
 import cn.graydove.httpmaster.core.request.*;
 
@@ -27,6 +28,8 @@ public class DefaultHttpRequest implements HttpRequest {
     private HttpMethod httpMethod;
 
     private Charset charset;
+
+    private Singleton<JsonParser> jsonParser;
 
     public DefaultHttpRequest(HttpRequestFactory httpRequestFactory, Charset charset) {
         this(httpRequestFactory);
@@ -111,5 +114,10 @@ public class DefaultHttpRequest implements HttpRequest {
     @Override
     public void setHttpMethod(HttpMethod httpMethod) {
         this.httpMethod = httpMethod;
+    }
+
+    @Override
+    public JsonParser getJsonParser() {
+        return jsonParser.get(httpRequestFactory::newJsonParser);
     }
 }

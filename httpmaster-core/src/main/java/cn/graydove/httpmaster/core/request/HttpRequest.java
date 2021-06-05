@@ -94,4 +94,6 @@ public interface HttpRequest {
     void setHttpUrl(HttpUrl httpUrl);
 
     void setHttpMethod(HttpMethod httpMethod);
+
+    JsonParser getJsonParser();
 }

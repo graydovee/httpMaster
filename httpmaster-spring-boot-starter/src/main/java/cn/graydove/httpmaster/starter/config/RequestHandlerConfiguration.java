@@ -5,6 +5,7 @@ import cn.graydove.httpmaster.starter.handler.impl.*;
 import cn.graydove.httpmaster.starter.handler.impl.filter.DefaultRequestFilter;
 import cn.graydove.httpmaster.starter.handler.impl.filter.RequestFilter;
 import cn.graydove.httpmaster.starter.handler.impl.relover.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -39,8 +40,8 @@ public class RequestHandlerConfiguration {
     }
 
     @Bean
-    public BeanReturnResolver beanReturnResolver() {
-        return new BeanReturnResolver();
+    public BeanReturnResolver beanReturnResolver(ObjectMapper objectMapper) {
+        return new BeanReturnResolver(objectMapper);
     }
 
     @Bean

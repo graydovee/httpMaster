@@ -12,14 +12,11 @@ import cn.graydove.httpmaster.core.request.HttpRequest;
 import cn.graydove.httpmaster.core.response.HttpResponse;
 import cn.hutool.core.net.url.UrlQuery;
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.json.JSONUtil;
 import cn.hutool.json.XML;
-import com.sun.javafx.fxml.builder.URLBuilder;
 import okhttp3.*;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Map;
 
 /**
  * @author graydove
@@ -83,7 +80,7 @@ public class OkHttpEngine extends AbstractHttpEngine {
         String body;
         switch (httpMediaType) {
             case JSON:
-                body = JSONUtil.toJsonStr(httpBody.getData());
+                body = httpRequest.getJsonParser().toJsonStr(httpBody.getData());
                 return RequestBody.create(body, mediaType);
             case URL_ENCODED:
                 UrlQuery urlQuery = new UrlQuery();

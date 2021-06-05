@@ -51,6 +51,11 @@ public class DefaultHttpRequestFactory implements HttpRequestFactory {
     }
 
     @Override
+    public JsonParser newJsonParser() {
+        return new DefaultJsonParser();
+    }
+
+    @Override
     public void setDefaultCharset(Charset charset) {
         this.defaultCharset = charset;
     }

@@ -13,7 +13,7 @@
 
     <groupId>cn.graydove.httpmaster</groupId>
     <artifactId>httpmaster-parent</artifactId>
-    <version>0.0.0-SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
         <module>httpmaster-spring-boot-starter</module>
